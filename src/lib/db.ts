@@ -21,7 +21,7 @@ type EventType = {
 }
 
 
-export async function addUserToEvent(event_id: string) {
+export async function addUserToEvent(event_id: string): boolean {
     // Ensure the current user is logged in
     if (!firebase_auth.currentUser) {
         console.error("No user is currently logged in.");
@@ -34,8 +34,6 @@ export async function addUserToEvent(event_id: string) {
         email: firebase_auth.currentUser.email,
         name: firebase_auth.currentUser.displayName,
     };
-
-    console.log("user: ", user);
     try {
         // Reference to the 'users' subcollection of the specified event
         const usersCollectionRef = collection(doc(db, "events", event_id), "users");
@@ -49,13 +47,14 @@ export async function addUserToEvent(event_id: string) {
         // Check if the user document exists
         if (userDocSnapshot.exists()) {
             console.log("User already exists in the event.");
-            return;
+            return false;
         }
 
         // If the user document does not exist, add the user
         await setDoc(userDocRef, user);
         console.log("User added with ID: ", userDocRef.id);
         add_mail_to_db();
+        return true;
     } catch (error) {
         console.error("Error adding user to event: ", error);
     }

@@ -19,8 +19,10 @@
     const currentDate = new Date();
     if (currentDate >= ticker_start && currentDate <= ticker_end) {
       await loginWithGoogleOrGetUser();
-      await addUserToEvent("ntaEzmLvtu281YKojmDf").then(() => {
-        goto("confirm-page")
+      await addUserToEvent("ntaEzmLvtu281YKojmDf").then((res) => {
+        if (res) {
+          goto("confirm-page")
+        }
       });
     } else {
       alert("Ticket is not available at this time.");
@@ -130,7 +132,7 @@
     height: 844pt;
     max-height: 100%;
     background-color: rgb(255, 255, 255);
-    overflow-y: hidden;
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
