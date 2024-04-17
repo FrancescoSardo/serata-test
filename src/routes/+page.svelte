@@ -19,7 +19,9 @@
     const currentDate = new Date();
     if (currentDate >= ticker_start && currentDate <= ticker_end) {
       await loginWithGoogleOrGetUser();
-      await addUserToEvent("ntaEzmLvtu281YKojmDf");
+      await addUserToEvent("ntaEzmLvtu281YKojmDf").then(() => {
+        goto("confirm-page")
+      });
     } else {
       alert("Ticket is not available at this time.");
     }

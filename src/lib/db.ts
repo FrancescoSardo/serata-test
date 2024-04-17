@@ -83,7 +83,7 @@ export function add_mail_to_db(/* mail: {html: string, subject: string, text: st
         let mail : {message: {html: string, subject: string, text: string}, to: string[] } = {
             message: {
                 html: html,
-                subject: "subject",
+                subject: "Email di Conferma",
                 text: "text",
             },
             to: [user.email] // Use the current user's email
