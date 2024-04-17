@@ -89,6 +89,8 @@
 </div>
 
 <style lang="scss">
+  @import '../lib/global.scss';
+
   .wrapper_intro {
     background-color: black;
     color: white;
