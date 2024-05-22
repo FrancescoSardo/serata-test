@@ -110,8 +110,9 @@ export async function getEventById(id: string) {
             const eventData = eventSnapshot.data() as EventType; // Get the event data
 
             // Fetch the tickets subcollection
-            const ticketsRef = collection(eventRef, "ticket");
+            const ticketsRef = collection(eventRef, "tickets");
             const ticketsSnapshot = await getDocs(ticketsRef);
+            
             const tickets = ticketsSnapshot.docs.map(doc => {
                 const data = doc.data();
                 return {
@@ -124,7 +125,7 @@ export async function getEventById(id: string) {
 
             // Add the tickets to the event data
             eventData.ticket = tickets;
-
+            console.log(eventData)
             return eventData; // Return the event data including the tickets
         } else {
             console.log("No such event!");
