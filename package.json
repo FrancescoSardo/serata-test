@@ -42,6 +42,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.0.1",
 		"firebase": "^10.10.0"
 	}
 }
